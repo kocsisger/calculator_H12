@@ -1,6 +1,7 @@
 package hu.unideb.inf.calculator;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -30,11 +31,28 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void handleButtonPressed(View view) {
-        Button button = (Button)view;
-        switch (button.getText().toString()){
-            case "CE" : resultTextView.setText("0"); break;
-            case "="  : break;
-            default   : resultTextView.append(button.getText());
+        Button button = (Button) view;
+        switch (button.getText().toString()) {
+            case "CE":
+                resultTextView.setText("0");
+                break;
+            case "=":
+                resultTextView.setText(
+                        calculate(resultTextView.getText().toString())
+                );
+                break;
+            default:
+                resultTextView.append(button.getText());
         }
+    }
+
+    private String calculate(String expression) {
+        String[] splitExpression = expression.split("[+\\-*/]");
+        int op1 = Integer.parseInt(splitExpression[0]);
+        int op2 = Integer.parseInt(splitExpression[1]);
+
+        Log.d("TEST_OP", "Operands: " + op1 + ", " + op2);
+
+        return "ERROR";
     }
 }
