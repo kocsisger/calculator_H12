@@ -42,12 +42,17 @@ public class MainActivity extends AppCompatActivity {
                 );
                 break;
             default:
-                resultTextView.append(button.getText());
+                if (resultTextView.getText().toString().equals("0")
+                        || resultTextView.getText().toString().equals("ERROR"))
+                    resultTextView.setText(button.getText());
+                else
+                    resultTextView.append(button.getText());
         }
     }
 
     private String calculate(String expression) {
         String[] splitExpression = expression.split("[+\\-*/]");
+        if (splitExpression.length!=2) return "ERROR";
         int op1 = Integer.parseInt(splitExpression[0]);
         int op2 = Integer.parseInt(splitExpression[1]);
 
