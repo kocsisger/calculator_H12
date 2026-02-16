@@ -51,7 +51,17 @@ public class MainActivity extends AppCompatActivity {
         int op1 = Integer.parseInt(splitExpression[0]);
         int op2 = Integer.parseInt(splitExpression[1]);
 
-        Log.d("TEST_OP", "Operands: " + op1 + ", " + op2);
+        String operator = expression.replace(splitExpression[0], "");
+        operator = operator.replace(splitExpression[1], "");
+
+        switch (operator){
+            case "+": return "" + (op1 + op2);
+            case "-": return "" + (op1 - op2);
+            case "*": return "" + (op1 * op2);
+            case "/": return "" + (op1 / op2);
+        }
+
+        Log.e("TEST_OP", "Expression: " + op1 + " "  + operator + " " + op2);
 
         return "ERROR";
     }
